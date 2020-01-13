@@ -46,46 +46,82 @@ For the following exercises please read the Python appendix in the Marsland text
 ## Exercise 1
 
 ```python
-# YOUR SOLUTION HERE
-#a=1000
-print('this is my answer',a+1) 
+
+import numpy as np
+a = 2 * np.ones((6,4))
+a
 ```
 
 ## Exercise 2
 
 ```python
-# YOUR SOLUTION HERE
-a=2000
+b = np.ones((6,4)) + 2 * np.vstack([np.eye(4), np.zeros((2,4))])
+b
 ```
 
 ## Exercise 3
 
-```python
-# YOUR SOLUTION HERE
-```
+
+For the multiplication operation, if C = A * B, then C[i,j] = A[i,j] * B[i,j] i.e. element-wise multiplication
+
+Thus A * B will only work for matrices of the same size
+
+However the dot operation is a matrix multiplication, so for dot(A, B) to work,
+
+The number of columns in A must be equal to the number of rows in B
+
 
 ## Exercise 4
 
-```python
-# YOUR SOLUTION HERE
-```
+
+Let a be an m0 x n0 matrix and b be a m1 x n1 matrix
+
+If n0 = m1 the matrices can be multiplied
+
+The resulting matrix will be of size m0 x n1
+
 
 ## Exercise 5
 
 ```python
-# YOUR SOLUTION HERE
+def print_to_screen():
+    print("Hello world!")
+    
+print_to_screen()
 ```
 
 ## Exercise 6
 
 ```python
-# YOUR SOLUTION HERE
+def random_info():
+    a = np.random.rand(3)
+    b = np.random.randn(3)
+    c = a + b
+    print("size: " + str(np.size(c)))
+    print("sum: " + str(np.sum(c)))
+    print("mean: " + str(np.mean(c)))
+    print("standard deviation: " + str(np.std(c)))
+          
+random_info()
 ```
 
 ## Exercise 7
 
 ```python
-# YOUR SOLUTION HERE
+def howmanyones(array):
+    ones = 0
+    for el in np.nditer(array):
+        if el == 2:
+            ones += 1
+    return ones
+
+def oneswhere(array):
+    a = np.where(array == 1, array, 0)
+    return np.sum(a)
+
+howmanyones(np.random.randint(-1, 8, (10, 10)))
+oneswhere(np.random.randint(-1, 8, (10, 10)))
+    
 ```
 
 ## Excercises 8-???
@@ -96,28 +132,44 @@ While the Marsland book avoids using another popular package called Pandas, we w
 Repeat exercise A.1 from Marsland, but create a Pandas DataFrame instead of a NumPy array.
 
 ```python
-# YOUR SOLUTION HERE
+import pandas as pd
+import numpy as np
+
+pd.DataFrame(2 * np.ones((6,4)))
 ```
 
 ## Exercise 9
 Repeat exercise A.2 using a DataFrame instead.
 
 ```python
-# YOUR SOLUTION HERE
+pd.DataFrame(np.ones((6,4)) + 2 * np.vstack([np.eye(4), np.zeros((2,4))]))
 ```
 
 ## Exercise 10
 Repeat exercise A.3 using DataFrames instead.
 
-```python
-# YOUR SOLUTION HERE
-```
+
+When using DataFrames, column names must match the index names
+
 
 ## Exercise 11
 Repeat exercise A.7 using a dataframe.
 
 ```python
-# YOUR SOLUTION HERE
+a = pd.DataFrame((np.random.randint(-1,8,(10,10))))
+def hwmny1s():
+    count = 0
+    for i in range(len(a)):
+        for j in a.loc[i]:
+            if j == 1:
+                count += 1
+    return count
+
+def whereda1s():
+    return int(sum(np.array(a.where(a == 1).sum())))
+
+hwmny1s()
+whereda1s()
 ```
 
 ## Exercises 12-14
@@ -137,22 +189,50 @@ Notice how we have nice headers and mixed datatypes? That is one of the reasons 
 How do you select the ``name`` column without using .iloc?
 
 ```python
-## YOUR SOLUTION HERE
+titanic_df["name"]
 ```
 
 ## Exercise 13
 After setting the index to ``sex``, how do you select all passengers that are ``female``? And how many female passengers are there?
 
 ```python
-## YOUR SOLUTION HERE
 titanic_df.set_index('sex',inplace=True)
+titanic_df.loc['female']
 ```
 
 ## Exercise 14
 How do you reset the index?
 
 ```python
-## YOUR SOLUTION HERE
+titanic_df.reset_index(inplace=True)
+```
+
+```python
+titanic_df
+```
+
+```python
+
+```
+
+```python
+
+```
+
+```python
+
+```
+
+```python
+
+```
+
+```python
+
+```
+
+```python
+
 ```
 
 ```python
